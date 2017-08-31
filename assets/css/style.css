@@ -1,0 +1,185 @@
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.unrounded {
+    border-radius: 0;
+    border: none;
+}
+
+.center {
+  text-align: center;
+}
+
+div.container {
+  margin-top: 20px;
+}
+
+.bg-fill {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.no-ul-padding {
+  padding-left: 10px;
+}
+.no-ul-padding > li {
+  font-size: 0.8em;
+}
+
+/*****/
+
+.bg-overwrite {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/*****/
+
+.latenight-list-poster {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  margin-bottom: 2em;
+}
+.latenight-list-poster-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 4px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-family: 'Raleway', 'Open-Sans', sans-serif;
+}
+.latenight-list-modal-spanner {
+  text-align: center;
+  padding: 10px;
+  background-size: cover;
+  background-position: center center;
+  height: 240px;
+  filter: grayscale(65%);
+}
+.latenight-list-modal-overview {
+  padding: 20px;
+  color: white;
+  font-size: 1.2em;
+}
+
+/*****/
+
+.info-container .card {
+  padding: 20px;
+  font-size: 1.2em;
+  width: 100%;
+}
+.info-grid {
+  padding: 20px;
+  text-align: center;
+}
+.info-grid-title {
+  display: block;
+}
+.info-grid-value {
+  display: block;
+  font-size: 3em;
+}
+.info-grid-value-sm {
+  display: block;
+  font-size: 1.2em;
+  line-height: 4em;
+}
+.info-container .card-outline-secondary {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.info-episode-thumb {
+  cursor: pointer;
+  position: relative;
+}
+.info-episode-thumb > span {
+  position: absolute;
+  display: inline-block;
+  left: 5px;
+  bottom: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  padding: 4px;
+}
+
+/*****/
+
+.cal-episode {
+  width: 100%;
+}
+.cal-episode-date {
+  width: 78px;
+  text-align: center;
+  padding: 8px 16px;
+}
+.cal-episode-date h6 {
+  text-transform: uppercase;
+}
+.cal-episode-meta {
+  padding: 2px;
+  width: calc(100% - 78px);
+}
+.cal-episode-meta p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cal-episode-meta:hover {
+  cursor: pointer;
+  color: white;
+}
+.cal-episode-danger {
+  border-left: solid 4px #CC0000;
+}
+.cal-episode-success {
+  border-left: solid 4px #77B300;
+}
+.cal-episode-primary {
+  border-left: solid 4px #2A9FD6;
+}
+.cal-future h5 {
+  color: #2A9FD6;
+}
+.cal-future h6 {
+  color: #2A9FD6;
+}
+
+/*****/
+
+#page-loader {
+	display: none;
+	position: fixed;
+	left: 0;
+  bottom: 0;
+	z-index: 9999;
+	background-color: rgba(0, 0, 0, 0.85);
+	color: white;
+}
+.page-loader-text {
+  min-width: 25vw;
+	padding: 40px;
+}
+
+/*****/
+
+.page-footer {
+  margin-top: 100px !important;
+}

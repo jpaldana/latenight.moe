@@ -1,0 +1,163 @@
+body.dark {
+    background-color: #111111;
+}
+body.dark div.container {
+    color: white;
+}
+body.dark #chatbox {
+    color: white;
+    background-color: #111111;
+    border: solid 2px #000000;
+}
+body.dark div.vjs-modal-dialog-content {
+    color: black;
+}
+
+.container-media {
+    background-color: #000000;
+    position: relative;
+}
+.container-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 30px;
+    pointer-events: none;
+    overflow: hidden;
+}
+.container-text:hover {
+    overflow: auto;
+    pointer-events: auto;
+}
+.container-text ul {
+    padding-left: 0;
+    list-style: none;
+}
+.container-text ul li {
+    pointer-events: auto;
+    margin: 4px;
+    max-width: 30vw;
+}
+.container-text span.name {
+    display: block;
+    color: #ffffff;
+    font-size: 0.8em;
+}
+.container-text span.message {
+    display: block;
+    word-break: break-all;
+}
+.container-text span.message.message-hidden {
+    display: none;
+}
+.container-text p {
+    background-color: rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: inline-block;
+    margin-bottom: 0;
+}
+.container-text p:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.container-chat {
+    width: 100%;
+}
+#chatbox {
+    width: 100%;
+    padding: 4px;
+}
+
+#heartbeat-table span.label {
+    margin-right: 2px;
+}
+
+.container-log {
+    height: 240px;
+    overflow: auto;
+}
+#log-chat {
+    padding-left: 0;
+    list-style: none;
+}
+
+.settings-group {
+    padding: 10px;
+}
+.tab-content h1 {
+    font-size: 1.2em;
+}
+
+
+.scroll::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+.scroll::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+.scroll::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+.scroll::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.25);
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.scroll::-webkit-scrollbar-track:hover {
+  background: rgba(30, 30, 30, 0.25);
+}
+.scroll::-webkit-scrollbar-track:active {
+  background: rgba(30, 30, 30, 0.25);
+}
+.scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* https://bootsnipp.com/snippets/featured/fancy-bootstrap-checkboxes */
+.form-group input[type="checkbox"] {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label i {
+    width: 20px;
+}
+.form-group input[type="checkbox"] + .btn-group > label i:first-child {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label i:last-child {
+    display: inline-block;   
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label i:first-child {
+    display: inline-block;
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label i:last-child {
+    display: none;   
+}
+
+/* hide the captions settings item from the captions menu */
+.vjs-texttrack-settings {
+  display: none;
+}
+/* style subs */
+.vjs-text-track-display div div {
+  color: #FFFFFF;
+  text-shadow:
+   -1px -1px 2px #000,  
+    1px -1px 2px #000,
+    -1px 1px 2px #000,
+     1px 1px 2px #000;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+  background-color: transparent !important;
+}

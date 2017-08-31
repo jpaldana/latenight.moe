@@ -1,0 +1,168 @@
+body, html {
+	font-family: 'Open Sans', sans-serif;
+}
+body {
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), url(../images/sky.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: black;
+	background-attachment: fixed;
+}
+
+.navbar-brand-suffix {
+	display: inline-block;
+	font-size: 0.6em;
+	position: relative;
+}
+
+.vertical-text {
+	transform: rotate(-90deg);
+	transform-origin: left top 0;
+}
+.search-res:hover {
+	background-color: #1c1c1c;
+}
+.block-toggle-container {
+	cursor: pointer;
+}
+.block-toggle:hover {
+	color: white;
+}
+.block {
+}
+.block-hidden {
+	display: none;
+}
+
+.btn-fit {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-bottom: 3px;
+}
+
+.calendar-cell {
+	min-height: 120px;
+	position: relative;
+	padding-top: 30px;
+	width: 100%;
+}
+@media (max-width: 768px){
+	.calendar-cell-hidden {
+		display: none;
+	}
+}
+.calendar-cell .calendar-date {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+.calendar-cell .calendar-today {
+	color: #00e7ff;
+	font-weight: bold;
+}
+.calendar-cell .calendar-item {
+	font-size: 0.75em !important;
+	display: block;
+}
+.calendar-cell .calendar-item:hover {
+	color: white;
+}
+
+/**/
+
+.poster {
+	width: 100%;
+	height: 280px;
+	/*width: 200px;
+	height: 294px;*/
+	background-image: url(../images/blank_poster.jpg);
+	position: relative;
+	display: inline-block;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.poster:hover > .poster-title {
+	opacity: 1.0;
+}
+.poster-title {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px 0;
+	opacity: 0;
+}
+.poster-title.title-shown {
+	opacity: 1.0;
+}
+.poster-title h1 {
+	font-size: 0.9em;
+	margin: 0;
+}
+.container-wrapper {
+	font-family: "Open Sans", sans-serif;
+	padding-top: 20px;
+	margin-top: -20px;
+	background-size: cover !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	background-attachment: fixed !important;
+	min-height: 100vh;
+	width: 100%;
+}
+.info-poster {
+	width: 100%;
+}
+.info-overview {
+	background-color: rgba(0, 0, 0, 0.75);
+	color: white;
+	font-size: 1.0em;
+}
+
+/* more - https://codepen.io/maxds/pen/jgeoA */
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: block;
+}
+
+/**/
+
+@media (min-width: 768px){
+  .calendar-row .col-md-1,
+  .calendar-row .col-sm-1,
+  .calendar-row .col-lg-1  {
+    width: 100%;
+    *width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .calendar-row .col-md-1,
+  .calendar-row .col-sm-1,
+  .calendar-row .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}
+
+/**
+ *  The following is not really needed in this case
+ *  Only to demonstrate the usage of @media for large screens
+ */    
+@media (min-width: 1200px) {
+  .calendar-row .col-md-1,
+  .calendar-row .col-sm-1,
+  .calendar-row .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}
