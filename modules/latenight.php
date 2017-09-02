@@ -11,8 +11,8 @@ class LatenightApi {
     }
 	
 	function GetListing() {
-        $sonarr = $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "series?apikey=b80aa1e9689742df8e45aa48d825eec5");
-        $radarr = $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie?apikey=dbc62d7f1e4e409aa82e3c93f42a1c95");
+        $sonarr = $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "series?apikey=" . LATENIGHT_SONARR_APIKEY);
+        $radarr = $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie?apikey=" . LATENIGHT_RADARR_APIKEY);
         $sonarr = json_decode($sonarr, true);
         $radarr = json_decode($radarr, true);
         return json_encode(array_merge($sonarr, $radarr));
@@ -27,15 +27,15 @@ class LatenightApi {
     }
 
     function GetEpisodes($id) {
-		return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/?seriesId={$id}&apikey=b80aa1e9689742df8e45aa48d825eec5");
+		return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/?seriesId={$id}&apikey=" . LATENIGHT_SONARR_APIKEY);
     }
     
     function GetEpisodeData($id, $movie) {
         if ($movie) {
-            return $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie/{$id}?apikey=dbc62d7f1e4e409aa82e3c93f42a1c95");
+            return $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie/{$id}?apikey=" . LATENIGHT_RADARR_APIKEY);
         }
         else {
-            return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/{$id}?apikey=b80aa1e9689742df8e45aa48d825eec5");
+            return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/{$id}?apikey=" . LATENIGHT_SONARR_APIKEY);
         }
     }
 
@@ -58,7 +58,7 @@ class LatenightApi {
     }
 
     function GetCalendar($start, $end) {
-        return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "calendar?start={$start}&end={$end}&unmonitored=true&apikey=b80aa1e9689742df8e45aa48d825eec5");
+        return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "calendar?start={$start}&end={$end}&unmonitored=true&apikey=" . LATENIGHT_SONARR_APIKEY);
     }
 
 	protected function CachedRequest($url, $maxAge = 3600) {
