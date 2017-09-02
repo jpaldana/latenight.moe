@@ -1,4 +1,8 @@
 <?php
+date_default_timezone_set("Asia/Tokyo");
+define("VERSION", "3.0.3");
+define("CSS_APPEND", "?v=" . VERSION);
+
 class LatenightApi {
     private $cachePath;
 
