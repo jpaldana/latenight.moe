@@ -10,8 +10,8 @@ function LoadEpisodeData(entryId) {
         dataCache = data;
         $("#play-title").attr("value", data.series.title + " - " + data.seasonNumber + "x" + data.episodeNumber + ": " + data.title);
         $("#play-thm").attr("value", "https://media.latenight.moe:12901/api.php?req=Thumbnail&path=" + encodeURIComponent(data.episodeFile.path));
-        EpisodeListener(data.hash);
-        StartProcessor(data);
+
+        $("#watch-btn-direct").attr("href", "https://media.latenight.moe:12901/api.php?req=Direct&path=" + encodeURIComponent(data.episodeFile.path));
     })
     .fail(function() {
         console.log("Failed to call API: LoadEpisodeData");
@@ -20,9 +20,10 @@ function LoadEpisodeData(entryId) {
         console.log("LoadEpisodeData() done");
     });
 }
-function StartProcessor(file) {
+function StartProcessor(file, useSource = 0) {
     $.post("/api/EpisodeParser", {
-        file: dataCache.episodeFile.path
+        file: dataCache.episodeFile.path,
+        source: useSource
     })
     .done(function(data) {
         console.log("EpisodeParser() called");
@@ -53,6 +54,20 @@ function EpisodeListener(hash) {
         }
     });
 }
+
+$("#watch-btn-stream").on("click", function(e) {
+    $("#optProc").hide();
+    $("#preProc").show();
+    EpisodeListener(dataCache.hash + "_src");
+    StartProcessor(dataCache, 1);
+});
+
+$("#watch-btn-stream-downscaled").on("click", function(e) {
+    $("#optProc").hide();
+    $("#preProc").show();
+    EpisodeListener(dataCache.hash);
+    StartProcessor(dataCache, 0);
+});
 
 $(function() {
     LoadEpisodeData(entryId);

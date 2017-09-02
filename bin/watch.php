@@ -3,7 +3,44 @@ $page->show("header");
 $page->show("navbar");
 
 echo "
-<div class='container' id='preProc'>
+<div class='container' id='optProc'>
+	<h3>Select an option</h3>
+	<br />
+	<div class='card card-outline-primary text-xs-center'>
+		<div class='card-block'>
+			<blockquote class='card-blockquote'>
+				<h5>Stream</h5>
+				<p><span class='text-primary'>Use this link to stream with your browser or watch with others.</span> This uses the source media as-is. Some source media files are not compatible with all browsers. 
+				<br />If this option fails, try the alternate stream method.</p>
+				<footer><a href='#' class='btn btn-primary' id='watch-btn-stream'>Stream</a></footer>
+			</blockquote>
+		</div>
+	</div>
+	<br />
+	<div class='card card-outline-primary text-xs-center'>
+		<div class='card-block'>
+			<blockquote class='card-blockquote'>
+				<h5>Stream (Downscaled)</h5>
+				<p><span class='text-primary'>Use this link to stream with your browser or watch with others.</span> This downscales the source media to 480p encoded at about 825 kbps, 
+				and will work with any browser that supports *.mp4 streams. TV and anime episodes will take about five (5) minutes to process, and movies 
+				will take about twenty (20) minutes to process.</p>
+				<footer><a href='#' class='btn btn-primary' id='watch-btn-stream-downscaled'>Stream (Downscaled)</a></footer>
+			</blockquote>
+		</div>
+	</div>
+	<br />
+	<div class='card card-outline-primary text-xs-center'>
+		<div class='card-block'>
+			<blockquote class='card-blockquote'>
+				<h5>Direct Link</h5>
+				<p>Copy this link into a compatible media player that supports network streams. This link is not recommended for browser streaming.</p>
+				<footer><a href='#' class='btn btn-primary' id='watch-btn-direct'>Direct Link</a></footer>
+			</blockquote>
+		</div>
+	</div>
+</div>
+
+<div class='container' id='preProc' style='display: none;'>
 	<h3>Please wait</h3>
 	<p id='watch-msg'></p>
 	<div class='progress'>

@@ -140,11 +140,17 @@ roomHeartbeatRef.on('value', function(snapshot) {
 
 // helpers
 function roomDataUpdate(key, val) {
-    if (typeof val == "undefined") return;
-    if (key == "master-source" && val.video.substring(0, 5) == "blob:") return;
-    if (key == "master-source" && val.video == videoUrl) return; // don't keep resyncing
+    if (typeof key == "undefined" || typeof val == "undefined") return;
+    if (key == "master-source" && typeof val.video == "undefined") {
+        // for initial purge
+    }
+    else {
+        if (key == "master-source" && val.video.substring(0, 5) == "blob:") return;
+        if (key == "master-source" && val.video == videoUrl) return; // don't keep resyncing
+    }
+
 	var updates = {};
-	updates['/room/' + room + '/' + key] = val;
+    updates["/room/" + room + "/" + key] = val;
 	database.ref().update(updates);
 }
 
@@ -184,6 +190,11 @@ evPaused = function(paused) {
 
 $(function() {
     if (host) {
+        // reset
+        roomDataUpdate("master-source", {});
+        roomDataUpdate("master-position", 0);
+        roomDataUpdate("master-playing", false);
+
         videoLoad({
             video: src,
             subtitle: srt,

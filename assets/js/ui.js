@@ -1,11 +1,13 @@
 $(".lazy").Lazy();
 
 // page-loader
+/*
 if (window.onbeforeunload == null) {
 	window.onbeforeunload = function() {
 		$("#page-loader").fadeIn(200);
 	};
 }
+*/
 
 // responsiveUi
 $(window).ready(responsiveUi);

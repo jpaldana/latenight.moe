@@ -20,7 +20,7 @@ switch ($_GET["json"]) {
     case "EpisodeParser":
         ignore_user_abort(true);
         // poke host
-        echo file_get_contents(LATENIGHT_HOST_URL . "Process&path=" . base64_encode($_POST["file"]));
+        echo file_get_contents(LATENIGHT_HOST_URL . "Process&useSource={$_POST['source']}&path=" . base64_encode($_POST["file"]));
     break;
     case "GetOtherSeasonData":
         $return = array(
