@@ -175,12 +175,6 @@ function DetailPopup(id) {
         $("<p>")
         .addClass("text-primary")
         .text("Quality: " + dataCache[id].episodeFile.quality.quality.name)
-    )
-    .append(
-        $("<a>")
-        .addClass("btn btn-sm btn-primary")
-        .text("Direct Link (local only)")
-        .attr("href", "https://local-media.latenight.moe" + dataCache[id].episodeFile.path)
     );
     $("#latenight-list-modal-view").off("click").on("click", function(e) {
         location.href = "/watch/" + dataCache[id].id;

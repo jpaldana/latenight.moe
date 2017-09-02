@@ -34,7 +34,7 @@ echo "
 			<blockquote class='card-blockquote'>
 				<h5>Direct Link</h5>
 				<p>Copy this link into a compatible media player that supports network streams. This link is not recommended for browser streaming.</p>
-				<footer><a href='#' class='btn btn-primary' id='watch-btn-direct'>Direct Link</a></footer>
+				<footer><a href='#' class='btn btn-primary' id='watch-btn-direct'>Direct Link</a> <a href='#' class='btn btn-secondary' id='watch-btn-direct-local'>Direct Link (local only)</a></footer>
 			</blockquote>
 		</div>
 	</div>
