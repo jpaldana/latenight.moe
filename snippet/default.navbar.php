@@ -9,18 +9,22 @@
 			<li class="nav-item active">
 				<a class="nav-link" href="/"><i class="fa fa-home"></i> <span class="sr-only">(current)</span></a>
 			</li>
+			<!--
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navigation" aria-expanded="false">Navigation</a>
 				<div class="dropdown-menu" aria-labelledby="navigation">
 					<a class="dropdown-item" href="/list">Full List</a>
 				</div>
 			</li>
+			-->
 			<li class="nav-item">
 				<a class="nav-link" href="/list">List</a>
 			</li>
+			<!--
 			<li class="nav-item">
 				<a class="nav-link" href="/genres">Genres</a>
 			</li>
+			-->
 			<li class="nav-item">
 				<a class="nav-link" href="/calendar">Calendar</a>
 			</li>

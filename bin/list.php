@@ -6,6 +6,29 @@ echo "
 <div class='container'>
 <h4>List</h4>
 <br />
+<div class='row'>
+	<div class='col-10'>
+		<form>
+			<div class='form-group'>
+				<input type='text' class='form-control' id='filter-query' placeholder='Enter a title, description or genre' />
+			</div>
+		</form>
+	</div>
+	<div class='col-2'>
+		<div class='btn-group' role='group'>
+			<button id='btnFilterDrop' type='button' class='btn btn-primary dropdown-toggle btn-fit' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-filter'></i></button>
+			<div class='dropdown-menu' aria-labelledby='btnFilterDrop'>
+				<a class='dropdown-item' href='#' onclick=\"ReFilter('abc');\">Alphabetical</a>
+				<a class='dropdown-item' href='#' onclick=\"ReFilter('age');\">Age</a>
+				<a class='dropdown-item' href='#' onclick=\"ReFilter('added');\">Added</a>
+			</div>
+		</div>
+	</div>
+</div>
+<br />
+<h6>Genres</h6>
+<div id='latenight-genres'></div>
+<br />
 <div id='latenight-list' class='row'>Please wait...</div>
 </div>
 

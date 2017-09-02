@@ -29,6 +29,16 @@ div.container {
   font-size: 0.8em;
 }
 
+.btn-fit {
+  width: 100%;
+  display: block;
+}
+
+.badge-md {
+  font-size: 0.8em;
+  padding: 4px 8px;
+}
+
 /*****/
 
 .bg-overwrite {
@@ -62,8 +72,11 @@ div.container {
   padding: 4px;
   color: white;
   text-align: center;
-  display: inline-block;
+  display: none;
   font-family: 'Raleway', 'Open-Sans', sans-serif;
+}
+.latenight-list-poster:hover > .latenight-list-poster-title {
+  display: inline-block;
 }
 .latenight-list-modal-spanner {
   text-align: center;
@@ -77,6 +90,14 @@ div.container {
   padding: 20px;
   color: white;
   font-size: 1.2em;
+}
+.latenight-genre {
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.latenight-list-modal-genre {
+  margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 /*****/
