@@ -205,5 +205,7 @@ function getUrlParameter(name) {
 };
 
 $(function() {
-    LoadEpisodes(id);
+    if (sonarr) {
+        LoadEpisodes(id);
+    }
 });

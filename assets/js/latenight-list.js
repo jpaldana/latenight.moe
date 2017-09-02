@@ -150,20 +150,40 @@ function ParseResults(data, requireRelevant = false) {
 }
 
 function CreateResultPoster(id, result) {
-    if ($("div[data-tvdb-id='" + result.tvdbId + "']").length > 0) return;
+    var resource = "";
+    var tidName = "";
+    var tidValue = "";
+    var posterType = "";
+    if (typeof result.tmdbId == "undefined") {
+        // sonarr (tv)
+        resource = "poster.jpg";
+        if ($("div[data-tvdb-id='" + result.tvdbId + "']").length > 0) return;
+        tidName = "tvdb";
+        tidValue = result.tvdbId;
+        posterType = "sonarr";
+    }
+    else {
+        // radarr (movies)
+        resource = "movie-poster.jpg";
+        if ($("div[data-tmdb-id='" + result.tvdbId + "']").length > 0) return;
+        tidName = "tmdb";
+        tidValue = result.tmdbId;
+        posterType = "radarr";
+    }
     $("#latenight-list").append(
         $("<div>")
         .addClass("col-4 col-sm-4 col-md-4 col-lg-3")
         .addClass("latenight-list-poster-container")
-        .attr("data-tvdb-id", result.tvdbId)
+        .attr("data-" + tidName + "-id", tidValue)
         .attr("data-result-id", id)
+        .attr("data-poster-type", posterType)
         .append(
             $("<a>")
             .attr("href", "/info/" + result.id + "/" + GetTitle(result))
             .append(
                 $("<div>")
                 .addClass("latenight-list-poster ar-2-3")
-                .css("background-image", "url(/static/" + result.id + "/poster.jpg)")
+                .css("background-image", "url(/static/" + result.id + "/" + resource + ")")
                 .append(
                     $("<span>")
                     .addClass("latenight-list-poster-title")
@@ -173,21 +193,28 @@ function CreateResultPoster(id, result) {
             .attr("data-id", id)
             .on("click", function(e) {
                 e.preventDefault();
-                DetailPopup($(this).attr("data-id"));
+                DetailPopup($(this).attr("data-id"), posterType);
             })
         )
     );
 }
 
-function DetailPopup(id) {
+function DetailPopup(id, type) {
     console.log("DetailPopup() called");
+    var resource;
+    if (type == "sonarr") {
+        resource = "background.jpg";
+    }
+    else if (type == "radarr") {
+        resource = "movie-background.jpg";
+    }
     $("#latenight-list-modal-title").text(GetTitle(dataCache[id]));
     $("#latenight-list-modal-body").empty();
     $("#latenight-list-modal-body")
     .append(
         $("<div>")
         .addClass("latenight-list-modal-spanner")
-        .css("background-image", "url(/static/" + dataCache[id].id + "/background.jpg)")
+        .css("background-image", "url(/static/" + dataCache[id].id + "/" + resource + ")")
     )
     .append(
         $("<p>")
@@ -203,7 +230,11 @@ function DetailPopup(id) {
         );
     }
     $("#latenight-list-modal-view").off("click").on("click", function(e) {
-        location.href = "/info/" + dataCache[id].id + "/" + GetTitle(dataCache[id]).Urlify();
+        var extra = "";
+        if (type == "radarr") {
+            extra = "?movie";
+        }
+        location.href = "/info/" + dataCache[id].id + "/" + GetTitle(dataCache[id]).Urlify() + extra;
     });
     $("#latenight-list-modal").modal("show");
 }

@@ -5,10 +5,17 @@ $page->show("navbar");
 $id = $_GET["id"];
 
 $listing = json_decode($latenightApi->GetListing(), true);
-$info = $latenightApi->GetEntryWithId($listing, $id);
+$info = $latenightApi->GetEntryWithId($listing, $id, isset($_GET["movie"]));
 
 $poster = "/static/{$id}/poster.jpg";
 $background = "/static/{$id}/background.jpg";
+$sonarr = "true";
+
+if (isset($info["tmdbId"])) {
+	$poster = "/static/{$id}/movie-poster.jpg";
+	$background = "/static/{$id}/movie-background.jpg";
+	$sonarr = "false";
+}
 
 echo "
 <div class='bg-overwrite' style='background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url({$background});'></div>
@@ -26,7 +33,7 @@ echo "
 				<h4>Alternate Title(s)</h4>
 				<ul class='no-ul-padding'>
 ";
-foreach ($info["alternateTitles"] as $titleObject) {
+if (isset($info["alternateTitles"])) foreach ($info["alternateTitles"] as $titleObject) {
 	$title = trim($titleObject["title"]);
 	echo "
 					<li>{$title}</li>
@@ -42,8 +49,10 @@ echo "
 				<p>{$info['overview']}</p>
 			</div>
 			<br />
+";
+if ($sonarr == "true") {
+echo "
 			<div class='card card-outline-secondary text-xs-center'>
-				<h4>MyAnimeList Stats</h4>
 				<div class='row info-grid'>
 					<div class='col-4'>
 						<span class='info-grid-title'>Rating</span>
@@ -59,6 +68,9 @@ echo "
 					</div>
 				</div>
 			</div>
+";
+}
+echo "
 		</div>
 	</div>
 </div>
@@ -66,9 +78,32 @@ echo "
 
 // episodes
 
-echo "
-<div class='container' id='info-episode-container'></div>
+if ($sonarr == "true") {
+	echo "
+	<div class='container' id='info-episode-container'></div>
+	";
+}
+else {
+	// manually fill data, temp
+	if ($info["hasFile"]) {
+		echo "
+		<br />
+		<div class='container'>
+			<a href='/watch/{$info['id']}?movie' class='btn btn-lg btn-primary'>Watch {$info['title']}</a>
+		</div>
+		";
+	}
+	else {
+		echo "
+		<br />
+		<div class='container'>
+			<p class='text-danger'>Movie is currently not available.</p>
+		</div>
+		";
+	}
+}
 
+echo "
 <script>
 	var id = {$id};
 	var targetSeason = 1;
@@ -99,6 +134,12 @@ echo "
 
 //var_dump($info);
 //var_dump($episodes);
+
+echo "
+<script>
+var sonarr = {$sonarr};
+</script>
+";
 
 $page->block("footer", array("js" => array(
 	"/assets/js/latenight-episodes.js")));

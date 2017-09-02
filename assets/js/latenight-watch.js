@@ -2,18 +2,30 @@ var dataCache;
 
 function LoadEpisodeData(entryId) {
     $.post("/api/GetEpisodeData", {
-        id: entryId
+        id: entryId,
+        isMovie: movie
     })
     .done(function(data) {
         console.log("LoadEpisodeData() called");
         console.log(data);
         dataCache = data;
-        $("#play-title").attr("value", data.series.title + " - " + data.seasonNumber + "x" + data.episodeNumber + ": " + data.title);
-        $("#play-thm").attr("value", "https://media.latenight.moe:12901/api.php?req=Thumbnail&path=" + encodeURIComponent(data.episodeFile.path));
-
-        $("#watch-btn-direct").attr("href", "https://media.latenight.moe:12901/api.php?req=Direct&path=" + encodeURIComponent(data.episodeFile.path));
+        if (movie) {
+            $("#play-title").attr("value", data.title);
+            $("#play-thm").attr("value", "https://media.latenight.moe:12901/api.php?req=Thumbnail&path=" + encodeURIComponent(data.path));
+            $("#watch-btn-direct").attr("href", "https://media.latenight.moe:12901/api.php?req=Direct&path=" + encodeURIComponent(data.path));
+        }
+        else {
+            $("#play-title").attr("value", data.series.title + " - " + data.seasonNumber + "x" + data.episodeNumber + ": " + data.title);
+            $("#play-thm").attr("value", "https://media.latenight.moe:12901/api.php?req=Thumbnail&path=" + encodeURIComponent(data.episodeFile.path));
+            $("#watch-btn-direct").attr("href", "https://media.latenight.moe:12901/api.php?req=Direct&path=" + encodeURIComponent(data.episodeFile.path));
+        }
         if (window.location.host == "neko.latenight.moe:81") {
-            $("#watch-btn-direct-local").attr("href", "https://local-media.latenight.moe" + data.episodeFile.path);
+            if (movie) {
+                $("#watch-btn-direct-local").attr("href", "https://local-media.latenight.moe" + data.path);
+            }
+            else {
+                $("#watch-btn-direct-local").attr("href", "https://local-media.latenight.moe" + data.episodeFile.path);
+            }
         }
         else {
             $("#watch-btn-direct-local").hide();
@@ -27,8 +39,15 @@ function LoadEpisodeData(entryId) {
     });
 }
 function StartProcessor(file, useSource = 0) {
+    var path;
+    if (movie) {
+        path = dataCache.path;
+    }
+    else {
+        path = dataCache.episodeFile.path;
+    }
     $.post("/api/EpisodeParser", {
-        file: dataCache.episodeFile.path,
+        file: path,
         source: useSource
     })
     .done(function(data) {

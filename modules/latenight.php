@@ -7,7 +7,11 @@ class LatenightApi {
     }
 	
 	function GetListing() {
-		return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "series?apikey=b80aa1e9689742df8e45aa48d825eec5");
+        $sonarr = $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "series?apikey=b80aa1e9689742df8e45aa48d825eec5");
+        $radarr = $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie?apikey=dbc62d7f1e4e409aa82e3c93f42a1c95");
+        $sonarr = json_decode($sonarr, true);
+        $radarr = json_decode($radarr, true);
+        return json_encode(array_merge($sonarr, $radarr));
 	}
 
     function GetPoster($id) {
@@ -22,8 +26,13 @@ class LatenightApi {
 		return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/?seriesId={$id}&apikey=b80aa1e9689742df8e45aa48d825eec5");
     }
     
-    function GetEpisodeData($id) {
-        return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/{$id}?apikey=b80aa1e9689742df8e45aa48d825eec5");
+    function GetEpisodeData($id, $movie) {
+        if ($movie) {
+            return $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie/{$id}?apikey=dbc62d7f1e4e409aa82e3c93f42a1c95");
+        }
+        else {
+            return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/{$id}?apikey=b80aa1e9689742df8e45aa48d825eec5");
+        }
     }
 
     function GetEpisodeThumb($id) {
@@ -34,9 +43,12 @@ class LatenightApi {
         return $this->CachedRequest(LATENIGHT_MANAGER_API_ROOT . "?json=GetOtherSeasonData&current={$current}&targetSeason={$targetSeason}");
     }
 
-    function GetEntryWithId($listing, $id) {
+    function GetEntryWithId($listing, $id, $isMovie) {
         foreach ($listing as $entry) {
-            if ($entry["id"] == $id) return $entry;
+            if ($entry["id"] == $id) {
+                if ($isMovie && !isset($entry["tmdbId"])) continue; // hotfix
+                return $entry;
+            }
         }
         return false;
     }

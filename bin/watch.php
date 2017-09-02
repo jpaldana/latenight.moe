@@ -63,9 +63,17 @@ echo "
 		<input type='hidden' name='thumb' id='play-thm' />
 	</form>
 </div>
+";
 
+$movie = "false";
+if (isset($_GET["movie"])) {
+	$movie = "true";
+}
+
+echo "
 <script>
 var entryId = {$_GET['file']};
+var movie = {$movie};
 </script>
 ";
 

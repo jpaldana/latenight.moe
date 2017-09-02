@@ -203,7 +203,7 @@
 
     <script>
     <?php
-    $name = "guest" . mt_rand(10000, 99999);
+    $name = "";
     $host = "false";
     $src = "";
     $srt = "";
@@ -211,6 +211,9 @@
     $thumb = "";
     if (isset($_POST["name"])) {
         $name = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST["name"]);
+        if (strlen($name) == 0) {
+            $name = "guest" . mt_rand(10000, 99999);
+        }
         $host = "true";
         $src = $_POST["source"];
         $srt = $_POST["subtitle"];
