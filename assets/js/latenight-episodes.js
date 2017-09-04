@@ -96,7 +96,7 @@ function CreateEpisodeBlock(id, result) {
             $("<div>")
             .addClass("col-xs-6 col-md-4 col-lg-3 info-episode-thumb bg-fill ar-16-9 lazy")
             .attr("data-id", id)
-            .css("background-image", "url(" + hostBaseUrl + "Thumbnail&path=" + encodeURIComponent(result.episodeFile.path) + ")")
+            .css("background-image", "url(" + hostBaseUrl + "Thumbnail&path=" + encodeURIComponent(result.episodeFile.path).replace(/\(/g, "%28").replace(/\)/g, "%29") + ")")
             .append(
                 $("<span>")
                 .text(result.episodeNumber + ". " + episodeName)
