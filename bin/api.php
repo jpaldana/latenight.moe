@@ -13,7 +13,7 @@ switch ($_GET["json"]) {
     break;
     case "GetEpisodeData":
         // inject hash
-        $isMovie = isset($_POST["isMovie"]) ? true : (isset($_GET["isMovie"]) ? true : false);
+        $isMovie = isset($_POST["isMovie"]) ? ($_POST["isMovie"] == "false" ? false : true) : (isset($_GET["isMovie"]) ? true : false);
         $data = json_decode($latenightApi->GetEpisodeData(isset($_POST["id"]) ? $_POST["id"] : $_GET["id"], $isMovie));
         if ($isMovie) {
             if (isset($data->movieFile->relativePath)) {

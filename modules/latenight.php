@@ -30,8 +30,8 @@ class LatenightApi {
 		return $this->CachedRequest(LATENIGHT_SONARR_API_ROOT . "episode/?seriesId={$id}&apikey=" . LATENIGHT_SONARR_APIKEY);
     }
     
-    function GetEpisodeData($id, $movie) {
-        if ($movie) {
+    function GetEpisodeData($id, $isMovie) {
+        if ($isMovie) {
             return $this->CachedRequest(LATENIGHT_RADARR_API_ROOT . "movie/{$id}?apikey=" . LATENIGHT_RADARR_APIKEY);
         }
         else {
